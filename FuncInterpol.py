@@ -7,18 +7,18 @@ from tkinter import *
 
 tableLonLatAlt = transformCoord.openGpxFiles()
 
-prevLat = 0
-prevLon = 0
-prevAlt = 0
+# prevLat = 0
+# prevLon = 0
+# prevAlt = 0
 
 
 LonInterpolFunc = []
 LatInterpolFunc = []
 AltInterpolFunc = []
-print(tableLonLatAlt)
+# print(tableLonLatAlt)
 
 for i in range(len(tableLonLatAlt)):
-    print(i)
+    # print(i)
     if i == 0:
         continue
     else:
@@ -34,10 +34,10 @@ for i in range(len(tableLonLatAlt)):
         AltInterpolFunc.append((AltK, AltB))
 
 
-print(tableLonLatAlt)
-print(LonInterpolFunc)
-print(LatInterpolFunc)
-print(AltInterpolFunc)
+# print(tableLonLatAlt)
+# print(LonInterpolFunc)
+# print(LatInterpolFunc)
+# print(AltInterpolFunc)
 
 times = radTimeTransform.getRadData()
 

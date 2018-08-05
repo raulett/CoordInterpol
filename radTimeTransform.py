@@ -12,7 +12,7 @@ def getRadData():
         lines = fileRad.readlines()
         for line in lines:
             value = line.replace('\n', '').split('\t')
-            val_points.append(((datetime.strptime(value[1], "%Y-%m-%dT%H:%M:%S") + timedelta(hours=5)).timestamp(), value[0]))
+            val_points.append(((datetime.strptime(value[1], "%Y-%m-%dT%H:%M:%S") + timedelta(hours=0)).timestamp(), value[0]))
         fileRad.close()
     val_points = dict((x,y) for x, y in val_points)
     vals = []

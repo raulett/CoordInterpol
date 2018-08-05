@@ -1,3 +1,6 @@
+# Показывает графический интерфейс выбора нескольких gpx файлов и на выходе возвращает массив кортежей, представляющих
+# координатные точки вида (lon, lat, alt, nixTimstamp). Массив отсортирован по времени.
+
 from datetime import *
 from tkinter import filedialog
 import gpxpy
@@ -16,16 +19,16 @@ def openGpxFiles():
         for route in gpx.routes:
             print('Route:')
             for point in route.points:
-                print('Route Point at ({0},{1}) -> {2}'.format(point.latitude, point.longitude, point.elevation))
                 counter+=1
         for waypoint in gpx.waypoints:
-            print('waypoint {0} -> ({1},{2})'.format(waypoint.name, waypoint.latitude, waypoint.longitude))
+            gpx_points.append(tuple((waypoint.longitude, waypoint.latitude, waypoint.elevation,
+                                     (waypoint.time + timedelta(hours=0)).timestamp())))
             counter += 1
         for track in gpx.tracks:
             for segment in track.segments:
                 for point in segment.points:
-                    print('Track Point at ({0},{1}) -> {2}, {3}'.format(point.latitude, point.longitude, point.elevation, point.time.timestamp()))
-                    gpx_points.append(tuple((point.longitude, point.latitude, point.elevation, (point.time+timedelta(hours=8)).timestamp())))
+                    gpx_points.append(tuple((point.longitude, point.latitude, point.elevation,
+                                             (point.time + timedelta(hours=0)).timestamp())))
                     counter += 1
         gpx_file.close()
 
