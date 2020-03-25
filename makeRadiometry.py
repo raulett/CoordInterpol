@@ -1,6 +1,6 @@
 import transformCoord
 import coordFunction
-import MagnTimeTransfirm
+import getMagnData
 import datetime
 from tkinter import filedialog
 
@@ -13,8 +13,11 @@ for file in filesRad:
     lines = fileRad.readlines()
     for line in lines:
         value = line.replace('\n', '').split(';')
-        time = int(value[0])/1000-(3600*8)
-        dose = float(value[1].replace(',', '.'))
+        try:
+            time = int(value[0])
+            dose = float(value[1].replace(',', '.'))
+        except ValueError:
+            pass
         val_points.append((time, dose))
     fileRad.close()
 def getKey(item):
