@@ -12,7 +12,7 @@ LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 magnDataPoints = getMagnData()
 magnDataResult = []
 fileRes = filedialog.asksaveasfile('w')
-fileRes.write('T' + '\t' + 'qmc'  + '\t' + 'st' + '\t' + 'TIME' + '\t' + 'LON' + '\t' + 'LAT' + '\t' + 'ALT' + '\n')
+fileRes.write('FIELD' + '\t' + 'qmc'  + '\t' + 'st' + '\t' + 'TIME' + '\t' + 'LON' + '\t' + 'LAT' + '\t' + 'ALT' + '\n')
 for point in magnDataPoints:
     LatLonAlt = LatLonAltInterpolFunc.getLatLonAlt(point[0])
     resPoint = point + LatLonAlt

@@ -18,7 +18,7 @@ def getMagnData():
             st = value[2]
             # try:
             # dateTime = datetime.strptime(value[3], "%d-%m-%yT%H:%M:%S,%f").timestamp()
-            dateTime = datetime.strptime(value[3] + 'T' + value[4], "%m-%d-%yT%H:%M:%S,%f").timestamp()
+            dateTime = datetime.strptime(value[3] + 'T' + value[4], "%m.%d.%yT%H:%M:%S,%f").timestamp()
             # except BaseException:
             #     try:
             #         dateTime = datetime.strptime(value[3] + 'T' + value[4], "%m-%d-%yT%H:%M:%S,%f").timestamp()
