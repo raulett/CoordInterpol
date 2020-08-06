@@ -61,11 +61,12 @@ class CoordFunction:
                             tableLonLatAlt[i - 1][3] - tableLonLatAlt[i][3])) * tableLonLatAlt[i - 1][3]
                 self.AltInterpolFunc.append((AltK, AltB))
                 self.timeSt.append(tableLonLatAlt[i][3])
-
+        print("first rec: " + str(self.firstRecord) + ", last rec: " + str(self.lastRecord))
     # Функция получает время и возвращает положение LAT, LON, ALT. Пока реализовано перебором, надо будет переписать
     # половинным делением.
     def getLatLonAlt(self, timestamp):
         if timestamp < self.firstRecord or timestamp > self.lastRecord:
+            print(timestamp)
             return (0, 0, 0)
         else:
             i = 0

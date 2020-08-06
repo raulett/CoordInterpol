@@ -31,7 +31,7 @@ def openGpxFiles():
                     if (timeStampCounter != point.time):
                         timeStampCounter = point.time
                         gpx_points.append(tuple((point.longitude, point.latitude, point.elevation,
-                                             (point.time + timedelta(hours=0, seconds=17)).timestamp())))
+                                             (point.time + timedelta(hours=0, seconds=0)).timestamp())))
                         counter += 1
         gpx_file.close()
 
