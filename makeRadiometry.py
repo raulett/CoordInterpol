@@ -1,20 +1,22 @@
 # Модуль  перепривязывает координаты к данным радиометрии полученные с радиометра ATOM, Также позволяет учесть часовой
 # пояс GPS и телефона. А также позволяет получить несколько файлов с несколькими временными сдвигами
-import transformCoord
+from GetSpatialData import openGpxFiles
 import coordFunction
-import getMagnData
 import datetime
 from tkinter import filedialog
+from GetSpatialData.getSpatialCSV import getSpatialCSV
 
 # Указать таймзону телефона (считаем, что GPS -UTC)
-timezone = (0)
+timezone = (8)
 
 # Указать диапазон сдвигов данных Будет сформировано количество файлов с разными сдвигами
 # в количестве dataTimeShift[1] - dataTimeShift[0]
 dataTimeShift = (0, 1)
+timedelta = 23228089
 
-
-tableLonLatAlt = transformCoord.openGpxFiles()
+filesCSV = filedialog.askopenfilenames(title="Choose CSV coord files", filetypes=(("Template files", "*.txt"),
+                                                                                  ("All files", "*.*")))
+tableLonLatAlt = getSpatialCSV(filesCSV, '\t')
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 filesRad = filedialog.askopenfilenames(title = ("Choose rad file"))
 fileResName = filedialog.asksaveasfilename()
@@ -29,10 +31,11 @@ for delta in range(dataTimeShift[0], dataTimeShift[1]):
         for line in lines:
             value = line.replace('\n', '').split(';')
             try:
-                time = int(value[0]) - (timezone*3600) + delta
+                time = int(value[0]) - (timezone*3600)+ timedelta
+
                 dose = float(value[1].replace(',', '.'))
             except ValueError as ex:
-                print(ex)
+                print("radiometry file datetime parce error: {0}".format(ex))
                 continue
             val_points.append((time, dose))
         fileRad.close()

@@ -1,11 +1,10 @@
-import transformCoord
+from GetSpatialData import openGpxFiles
 import coordFunction
-import MagnTimeTransfirm
 
 from datetime import *
 from tkinter import filedialog
 
-tableLonLatAlt = transformCoord.openGpxFiles()
+tableLonLatAlt = openGpxFiles.openGpxFiles()
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 filesRad = filedialog.askopenfilenames(title = ("Choose Magnetic files"), filetypes=(("Template files", "*.txt"), ("All files", "*.*")))
 val_points = []

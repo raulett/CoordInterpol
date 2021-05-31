@@ -1,5 +1,5 @@
 # Показывает графический интерфейс выбора нескольких gpx файлов и на выходе возвращает массив кортежей, представляющих
-# координатные точки вида (lon, lat, alt, nixTimstamp). Массив отсортирован по времени.
+# координатные точки вида (lon, lat, alt, UnixTimstamp). Массив отсортирован по времени.
 
 from datetime import *
 from tkinter import filedialog
@@ -18,6 +18,10 @@ def openGpxFiles():
         gpx = gpxpy.parse(gpx_file)
 
         # for route in gpx.routes:
+        #     print('Route:')
+        #     for point in route.points:
+        #         counter+=1
+        # for point in gpx.trackpoints:
         #     print('Route:')
         #     for point in route.points:
         #         counter+=1

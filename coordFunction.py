@@ -66,7 +66,7 @@ class CoordFunction:
     # половинным делением.
     def getLatLonAlt(self, timestamp):
         if timestamp < self.firstRecord or timestamp > self.lastRecord:
-            print(timestamp)
+            print("data`s time record {0} is out of coordinate range.".format(timestamp))
             return (0, 0, 0)
         else:
             i = 0

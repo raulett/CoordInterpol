@@ -1,11 +1,11 @@
 #Связывает данные дозы с координатами из магнитки.
-import transformCoord
+from GetSpatialData import openGpxFiles
 import radTimeTransform
 import coordFunction
 from tkinter import filedialog
 import datetime
 
-tableLonLatAlt = transformCoord.openMagnFiles()
+tableLonLatAlt = openGpxFiles.openMagnFiles()
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 radData = radTimeTransform.getRadData_unixtimeDoseOnly()
 radData = radTimeTransform.fillDataHoles(radData)

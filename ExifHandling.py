@@ -1,5 +1,5 @@
 from exif import Image
-import transformCoord
+from GetSpatialData import openGpxFiles
 import coordFunction
 
 from datetime import *
@@ -7,7 +7,7 @@ from tkinter import filedialog
 
 timeshift = -0.75
 
-tableLonLatAlt = transformCoord.openGpxFiles()
+tableLonLatAlt = openGpxFiles.openGpxFiles()
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 
 photoFileNames = filedialog.askopenfilenames()

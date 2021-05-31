@@ -1,8 +1,7 @@
 # Модуль привязывает данные спектрометрии к координатам GPX, полученным из программы ASW от Радэка.
 
-import transformCoord
+from GetSpatialData import openGpxFiles
 import coordFunction
-import MagnTimeTransfirm
 
 from datetime import *
 from tkinter import filedialog
@@ -12,7 +11,7 @@ radioCalculateBeginNum = 145
 radioCalculateEndNum = 937
 timeshift = 0
 
-tableLonLatAlt = transformCoord.openGpxFiles()
+tableLonLatAlt = openGpxFiles.openGpxFiles()
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 filesRad = filedialog.askopenfilenames(title=("Choose gamma files"),
                                        filetypes=(("Template files", "*.txt"), ("All files", "*.*")))

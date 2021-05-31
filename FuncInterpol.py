@@ -1,11 +1,10 @@
 from tkinter import filedialog
 
-import transformCoord
+from GetSpatialData import openGpxFiles
 import radTimeTransform
 import datetime
-from tkinter import *
 
-tableLonLatAlt = transformCoord.openGpxFiles()
+tableLonLatAlt = openGpxFiles.openGpxFiles()
 
 # prevLat = 0
 # prevLon = 0

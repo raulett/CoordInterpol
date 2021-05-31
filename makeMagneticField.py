@@ -1,13 +1,13 @@
 # Связывает файлы магнитометра с данными координат из GPX
 # Сдвиг времени (часовой пояс) задается в файле transformCoord.openGpxFiles
 
-import transformCoord
+from GetSpatialData import openGpxFiles
 import coordFunction
 from getMagnData import getMagnData
 import datetime
 from tkinter import filedialog
 
-tableLonLatAlt = transformCoord.openGpxFiles()
+tableLonLatAlt = openGpxFiles.openGpxFiles()
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 magnDataPoints = getMagnData()
 magnDataResult = []
