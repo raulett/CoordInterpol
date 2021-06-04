@@ -22,7 +22,7 @@ for file in filesRad:
 	lines = fileRad.readlines()
 	for line in lines:
 		value = line.replace('\n', '').split('\t')
-		if ((len(value)) != 10):
+		if ((len(value)) != 13):
 			continue
 
 		Time = value[0]
@@ -31,7 +31,10 @@ for file in filesRad:
 		ch1En = value[6]
 		ch2En = value[7]
 		expoTime = value[8]
-		spectre = value[9]
+		U = value[9]
+		Th = value[10]
+		K = value[11]
+		spectre = value[12]
 		count = 0
 		try:
 			dateTime = datetime.strptime(Time, "%d.%m.%YT%H:%M:%S").timestamp()+timeshift
@@ -51,7 +54,7 @@ for file in filesRad:
 					print("Error spectre count to integer")
 					continue
 
-		val_points.append((dateTime, (count, ch1Num, ch2Num, ch1En, ch2En, expoTime, spectre)))
+		val_points.append((dateTime, (count, ch1Num, ch2Num, ch1En, ch2En, expoTime, U, Th, K, spectre)))
 	fileRad.close()
 
 val_points = dict((x, y) for x, y in val_points)
@@ -70,7 +73,7 @@ val_points = sorted(vals, key=getKey)
 fileRes = filedialog.asksaveasfile('w')
 fileRes.write('DATETIME' + '\t' + 'LON' + '\t' + 'LAT' + '\t' + 'ALT' + '\t' + 'Counts' + '\t' +
               'ch1Num' + '\t' + 'ch2Num' + '\t' + 'ch1En' + '\t' + 'ch2En' + '\t' +
-              'expoTime' + '\t' + 'spectre' + '\n')
+              'expoTime' + '\t' + 'U' + '\t' + 'Th' + '\t' + 'K' + '\t' + 'spectre' + '\n')
 for point in val_points:
 	LatLonAlt = LatLonAltInterpolFunc.getLatLonAlt(point[0])
 	resPoint = point + LatLonAlt
@@ -78,5 +81,6 @@ for point in val_points:
 	              + str(resPoint[2]) + '\t' + str(resPoint[3]) + '\t' + str(resPoint[4]) + '\t'
 	              + str(resPoint[1][0]) + '\t' + str(resPoint[1][1]) + '\t' + str(resPoint[1][2]) + '\t'
 	              + str(resPoint[1][3]) + '\t' + str(resPoint[1][4]) + '\t' + str(resPoint[1][5]) + '\t'
-	              + str(resPoint[1][6]) + '\n')
+	              + str(resPoint[1][6]) + '\t' + str(resPoint[1][7]) + '\t' + str(resPoint[1][8]) + '\t'
+				  + str(resPoint[1][9]) + '\n')
 fileRes.close()
