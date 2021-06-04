@@ -1,3 +1,5 @@
+# Берет файлы ASW и компанует их в один TAB separated text и расчитывает каналы U, Th, K, на основе данных из блока констант ниже.
+
 from tkinter import filedialog
 import numpy as np
 

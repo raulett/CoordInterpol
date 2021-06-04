@@ -5,6 +5,8 @@ import MagnTimeTransfirm
 from datetime import *
 from tkinter import filedialog
 
+# Функционал для привязки координат к измерениям спектрометра МКСП от РАДЭК
+
 tableLonLatAlt = transformCoord.openGpxFiles()
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 filesRad = filedialog.askopenfilenames(title = ("Choose Magnetic files"), filetypes=(("Template files", "*.txt"), ("All files", "*.*")))

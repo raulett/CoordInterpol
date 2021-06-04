@@ -1,4 +1,4 @@
-#getRadData_unixtimeOnly Дает выбрать CSV Файлы радиометра и возвращает упорядоченный список кортежей (Время, доза)
+#getRadData_unixtimeOnly Привязывает данные радометрии ATOM к координатам GPX. Дает выбрать CSV Файлы радиометра и возвращает упорядоченный список кортежей (Время, доза)
 from datetime import *
 from tkinter import *
 from tkinter import filedialog
