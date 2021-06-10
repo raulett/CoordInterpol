@@ -37,7 +37,7 @@ for file in filesRad:
 		spectre = value[12]
 		count = 0
 		try:
-			dateTime = datetime.strptime(Time, "%d.%m.%YT%H:%M:%S").timestamp()+timeshift
+			dateTime = datetime.strptime(Time, "%d-%m-%YT%H:%M:%S").timestamp()+timeshift
 		except ValueError:
 			dateTime = 0
 			print("Error parsing datetime")
