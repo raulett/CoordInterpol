@@ -7,9 +7,11 @@ import MagnTimeTransfirm
 from datetime import *
 from tkinter import filedialog
 
+# radioCalculateBeginNum = 145
+# radioCalculateEndNum = 937
 # Номера каналов спектра, с какого по какой считать радиометрию
-radioCalculateBeginNum = 145
-radioCalculateEndNum = 937
+radioCalculateBeginNum = 54
+radioCalculateEndNum = 368
 timeshift = 0
 
 tableLonLatAlt = transformCoord.openGpxFiles()
