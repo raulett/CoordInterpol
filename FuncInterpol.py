@@ -5,6 +5,7 @@ import radTimeTransform
 import datetime
 from tkinter import *
 
+# table lon lat alt. tuple((point.longitude, point.latitude, point.elevation, (point.time + timedelta(hours=0, seconds=0)).timestamp())))
 tableLonLatAlt = transformCoord.openGpxFiles()
 
 # prevLat = 0

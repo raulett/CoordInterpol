@@ -12,7 +12,7 @@ from tkinter import filedialog
 # Номера каналов спектра, с какого по какой считать радиометрию
 radioCalculateBeginNum = 54
 radioCalculateEndNum = 368
-timeshift = 0
+timeshift = -1.5
 
 tableLonLatAlt = transformCoord.openGpxFiles()
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
@@ -39,7 +39,7 @@ for file in filesRad:
 		spectre = value[12]
 		count = 0
 		try:
-			dateTime = datetime.strptime(Time, "%d-%m-%YT%H:%M:%S").timestamp()+timeshift
+			dateTime = datetime.strptime(Time, "%d.%m.%YT%H:%M:%S").timestamp()+timeshift
 		except ValueError:
 			dateTime = 0
 			print("Error parsing datetime")

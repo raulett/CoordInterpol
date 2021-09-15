@@ -10,9 +10,9 @@ def atom_spectra_handling(file):
     file_spectre = open(file, 'r', encoding='ANSI')
     lines = file_spectre.readlines()
 
-    # Calibratuin coeffitient kx+b, calculate in channels
-    k = 0.13032581
-    b = 1.7243107769
+    # Calibration coefficient kx+b, calculate in channels
+    k = 0.3388
+    b = 15.649
     # Каналы для расчета md283
     U1 = (int(k*604+b), int(k*619+b))
     U2 = (int(k*1020+b), int(k*1330+b))

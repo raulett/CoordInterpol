@@ -4,16 +4,17 @@ from tkinter import filedialog
 import numpy as np
 
 def getASWdataFromFile(file):
-    # Calibratuin coeffitient kx+b, calculate in channels
-    k = 0.32841
-    b = 13.99
+    # Calibration coefficient kx+b, calculate in channels
+    k = 0.3388
+    b = 15.649
     # Каналы для расчета md283
-    U1 = (211, 217)
-    U2 = (349, 451)
-    U3 = (604, 625)
-    Th1 = (309, 332)
-    Th2 = (805, 977)
-    K = (464, 530)
+    U1 = (int(k*609+b), int(k*619+b))
+    U2 = (int(k*1020+b), int(k*1330+b))
+    U3 = (int(k*1660+b), int(k*1860+b))
+    Th1 = (int(k*900+b), int(k*970+b))
+    Th2 = (int(k*2410+b), int(k*2810+b))
+    K = (int(k*1370+b), int(k*1570+b))
+    integral = (int(k*400+b), int(k*2810+b))
 
     spectre_array = np.zeros(1024, np.uint32)
     fileASW = open(file, 'r', encoding='ANSI')
@@ -39,6 +40,7 @@ def getASWdataFromFile(file):
     U_counts = 0
     Th_counts = 0
     K_counts = 0
+    integral_counts = 0
 
     for b in range(0, len(spectreByte)//4):
         # int_val = b'\\{}\\{}\\{}\\{}'.format((spectreByte[b*4] << 24), (spectreByte[b*4 + 1]<< 16), (spectreByte[b*4 + 2] << 8), (spectreByte[b*4 + 3]))
@@ -64,6 +66,8 @@ def getASWdataFromFile(file):
 
     for i in range(K[0], K[1]+1):
         K_counts += spectre_array[i]
+
+
 
     spectreRec = (lines[DateIndex+2].replace('\n', '').replace('Spectrum=', '')  + 'T' + lines[TimeIndex+2].replace('\n', '').replace('Spectrum=', ''),
                   lines[PosIndex+1].replace('\n', '').replace('IsValid=', ''), lines[PosIndex+2].replace('\n', '').replace('Latitude=', ''), lines[PosIndex+3].replace('\n', '').replace('Longitude=', ''),
