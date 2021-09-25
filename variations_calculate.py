@@ -1,8 +1,16 @@
 from tkinter import filedialog
 from datetime import *
 from common.SplinesArray import *
+import sys
 
-general_magnetic_field = 61236
+try:
+    general_magnetic_field = int(sys.argv[1])
+except IndexError:
+    print('General field value argument not fount. Pass general field as first argument. for example: '
+          'variations_calculate.py 60693')
+    exit(1)
+except ValueError:
+    print('Can`t read general field value. Input an integer value. You input: {0}'.format(sys.argv[1]))
 
 
 def variations_calculate():
@@ -40,7 +48,7 @@ def variations_calculate():
         magnetic_file = open(magnetic_file_name, 'r')
         lines = magnetic_file.readlines()
         for line in lines:
-            value = line.replace('\n', '').split('\t')
+            value = line.replace('\n', '').split(';')
             try:
                 t = float(value[0])
             except ValueError:

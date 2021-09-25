@@ -1,3 +1,4 @@
+import numpy as np
 # Создает экземпляр функции линейного сплайна на основе таблично заданной функции. Таблично заданная функция передается
 # в виде списка кортежей (аргумент, значение).
 # кортежи будут отсортированы по значению аргумента
@@ -31,6 +32,8 @@ class LinearSpline:
                     0]
                 function_domain = (table[i - 1][0], table[i][0])
                 self.spline.append((k, b, function_domain))
+        self.spline = np.array(self.spline)
+
 
     def get_spline_domain(self):
         return self.spline_argument_domain
