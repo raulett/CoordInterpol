@@ -4,7 +4,12 @@ from GetSpatialData import openGpxFiles
 import radTimeTransform
 import datetime
 
+<<<<<<< HEAD
 tableLonLatAlt = openGpxFiles.openGpxFiles()
+=======
+# table lon lat alt. tuple((point.longitude, point.latitude, point.elevation, (point.time + timedelta(hours=0, seconds=0)).timestamp())))
+tableLonLatAlt = transformCoord.openGpxFiles()
+>>>>>>> develop
 
 # prevLat = 0
 # prevLon = 0
