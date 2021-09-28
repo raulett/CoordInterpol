@@ -48,7 +48,7 @@ def variations_calculate():
         magnetic_file = open(magnetic_file_name, 'r')
         lines = magnetic_file.readlines()
         for line in lines:
-            value = line.replace('\n', '').split(';')
+            value = line.replace('\n', '').split('\t')
             try:
                 t = float(value[0])
             except ValueError:
@@ -78,3 +78,4 @@ def variations_calculate():
     variated_file.close()
 
 variations_calculate()
+
