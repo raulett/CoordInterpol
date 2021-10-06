@@ -4,12 +4,12 @@ from GetSpatialData import openGpxFiles
 import radTimeTransform
 import datetime
 
-<<<<<<< HEAD
+# <<<<<<< HEAD
 tableLonLatAlt = openGpxFiles.openGpxFiles()
-=======
-# table lon lat alt. tuple((point.longitude, point.latitude, point.elevation, (point.time + timedelta(hours=0, seconds=0)).timestamp())))
-tableLonLatAlt = transformCoord.openGpxFiles()
->>>>>>> develop
+# # =======
+# # table lon lat alt. tuple((point.longitude, point.latitude, point.elevation, (point.time + timedelta(hours=0, seconds=0)).timestamp())))
+# tableLonLatAlt = transformCoord.openGpxFiles()
+# >>>>>>> develop
 
 # prevLat = 0
 # prevLon = 0
@@ -43,7 +43,7 @@ for i in range(len(tableLonLatAlt)):
 # print(LatInterpolFunc)
 # print(AltInterpolFunc)
 
-times = radTimeTransform.getRadData()
+times = radTimeTransform.getRadData_unixtimeDoseOnly()
 
 i = 0
 resultLon = []
