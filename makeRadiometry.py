@@ -12,11 +12,11 @@ timezone = (8)
 # Указать диапазон сдвигов данных Будет сформировано количество файлов с разными сдвигами
 # в количестве dataTimeShift[1] - dataTimeShift[0]
 dataTimeShift = (0, 1)
-timedelta = 23228089
+timedelta = 0
 
 filesCSV = filedialog.askopenfilenames(title="Choose CSV coord files", filetypes=(("Template files", "*.txt"),
                                                                                   ("All files", "*.*")))
-tableLonLatAlt = getSpatialCSV(filesCSV, '\t')
+tableLonLatAlt = getSpatialCSV(filesCSV, ';')
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 filesRad = filedialog.askopenfilenames(title = ("Choose rad file"))
 fileResName = filedialog.asksaveasfilename()

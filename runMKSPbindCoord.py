@@ -4,7 +4,13 @@ import coordFunction
 from datetime import *
 from tkinter import filedialog
 
+<<<<<<< HEAD
 tableLonLatAlt = openGpxFiles.openGpxFiles()
+=======
+# Функционал для привязки координат к измерениям спектрометра МКСП от РАДЭК
+
+tableLonLatAlt = transformCoord.openGpxFiles()
+>>>>>>> develop
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
 filesRad = filedialog.askopenfilenames(title = ("Choose Magnetic files"), filetypes=(("Template files", "*.txt"), ("All files", "*.*")))
 val_points = []
