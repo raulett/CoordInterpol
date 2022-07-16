@@ -13,6 +13,7 @@ class ValueNotFoundException(Exception):
 
 
 class SplinesArray:
+    debug = 0
     def __init__(self):
         self.spline_array = []
         self.left_border = 0
@@ -44,7 +45,8 @@ class SplinesArray:
                         inserted = 1
                         break
                 if inserted == 0:
-                    print("Incorrect spline borders. Array borders ({0}, {1}), "
+                    if self.debug:
+                        print("Incorrect spline borders. Array borders ({0}, {1}), "
                           "Adding spline borders ({2}, {3})".format(self.left_border,
                                                                     self.right_border,
                                                                     spline.get_spline_domain()[0],
@@ -52,7 +54,8 @@ class SplinesArray:
                     raise IncorrectSplineBordersException()
         if inserted == 0:
             self.spline_array.append(spline)
-            print("Adding spline borders arr_borders ({}, {}), spline_domain ({}, {})".format(self.left_border, self.right_border,
+            if self.debug:
+                print("Adding spline borders arr_borders ({}, {}), spline_domain ({}, {})".format(self.left_border, self.right_border,
                                                  spline.get_spline_domain()[0], spline.get_spline_domain()[1]))
 
     def get_value(self, argument):

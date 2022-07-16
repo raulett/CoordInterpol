@@ -10,6 +10,7 @@ from common.SplinesArray import *
 
 
 def openGpxFiles(coordFileNames):
+    debug = 0
     filesCoord = coordFileNames
     counter = 0
     gpx_points = []
@@ -26,7 +27,8 @@ def openGpxFiles(coordFileNames):
         lon_points = []
         lat_points = []
         alt_points = []
-        print("open GPX. Handle {} file {} from {}. ".format(file, files_counter, files_count))
+        if debug:
+            print("open GPX. Handle {} file {} from {}. ".format(file, files_counter, files_count))
         files_counter += 1
         gpx_file = open(file, 'r', encoding="utf_8_sig")
         gpx = gpxpy.parse(gpx_file)

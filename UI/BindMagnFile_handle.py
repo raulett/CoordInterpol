@@ -14,7 +14,7 @@ import numpy as np
 
 
 class BindMagnFile_handle(Ui_BindMagnFiles, QtWidgets.QMainWindow):
-    debug = 1
+    debug = 0
     def __init__(self):
         super(BindMagnFile_handle, self).__init__()
         self.setupUi(self)
