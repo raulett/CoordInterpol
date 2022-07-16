@@ -1,0 +1,1 @@
+python %~dp0\\spectrometry_handling_kb_radar_handle_ch1024.py

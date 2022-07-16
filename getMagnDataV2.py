@@ -3,14 +3,18 @@ from tkinter import *
 from tkinter import filedialog
 import traceback
 
-def getMagnData(mag_field_files):
+def getMagnData(mag_field_files, date_time_pattern):
     filesMagn = mag_field_files
+    # print(str(date_time_pattern))
+    # print(type(date_time_pattern))
     val_points = []
+    print('getMagnData: files: {}'.format(filesMagn))
     for file in filesMagn:
         fileRad = open(file, 'r')
         lines = fileRad.readlines()
         for line in lines:
             value = line.replace('\n', '').split(' ')
+            # print('getMagnData: values in line: {}'.format(value))
             if ((len(value))!=5):
                 continue
             T = value[0]
@@ -18,7 +22,7 @@ def getMagnData(mag_field_files):
             st = value[2]
             # try:
             # dateTime = datetime.strptime(value[3], "%d-%m-%yT%H:%M:%S,%f").timestamp()
-            dateTime = datetime.strptime(value[3] + 'T' + value[4], "%m.%d.%yT%H:%M:%S,%f").timestamp()
+            dateTime = datetime.strptime(value[3] + 'T' + value[4], date_time_pattern).timestamp()
             # except BaseException:
             #     try:
             #         dateTime = datetime.strptime(value[3] + 'T' + value[4], "%m-%d-%yT%H:%M:%S,%f").timestamp()

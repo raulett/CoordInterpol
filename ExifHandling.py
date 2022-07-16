@@ -27,7 +27,7 @@ for photoFileName in photoFileNames:
     print(image.datetime_digitized)
     print(picDateTime)
     print(photoUnixTimestamp)
-    latLonAlt = LatLonAltInterpolFunc.getLatLonAlt(photoUnixTimestamp)
+    latLonAlt = LatLonAltInterpolFunc.getLonLatAlt(photoUnixTimestamp)
     degLat = int(latLonAlt[0])
     minLat = int((latLonAlt[0] - degLat) * 60)
     secLat = ((latLonAlt[0] - degLat) * 60) - minLat
