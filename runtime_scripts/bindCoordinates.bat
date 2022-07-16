@@ -1,0 +1,1 @@
+python G:\Work\Programming\!Distr\CoordInterpol\makeMagneticField.py

@@ -4,38 +4,40 @@ import coordFunction
 from datetime import *
 from tkinter import filedialog
 
-<<<<<<< HEAD
+filesRad = filedialog.askopenfilenames(title="Choose MKSP spectrum files")
 tableLonLatAlt = openGpxFiles.openGpxFiles()
-=======
+
 # Функционал для привязки координат к измерениям спектрометра МКСП от РАДЭК
 
-tableLonLatAlt = transformCoord.openGpxFiles()
->>>>>>> develop
+# tableLonLatAlt = transformCoord.openGpxFiles()
+
 LatLonAltInterpolFunc = coordFunction.CoordFunction(tableLonLatAlt)
-filesRad = filedialog.askopenfilenames(title = ("Choose Magnetic files"), filetypes=(("Template files", "*.txt"), ("All files", "*.*")))
+
 val_points = []
+print("val_points init")
 for file in filesRad:
+    print("file: {} init")
     fileRad = open(file, 'r')
     lines = fileRad.readlines()
+    title = lines[0]
+    lines_count = len(lines)
+    lines_counter = 1
     for line in lines:
+        print("Handling {} line of {}. There is {} value points now".format(lines_counter, lines_count, len(val_points)))
+        lines_counter += 1
         value = line.replace('\n', '').split('\t')
-        if ((len(value))!=10):
-            continue
-
-        gpsTime = value[1]
-        T = value[9]
-
-        try:
-            k = int(value[2])
-        except ValueError:
+        if (len(value)) != 17:
             continue
 
         try:
-            dateTime = datetime.strptime(value[3], "%Y-%m-%dT%H:%M:%S").timestamp()
+            # dateTime = datetime.strptime(value[3], "%Y-%m-%dT%H:%M:%S").timestamp()
+            dateTime = datetime.strptime(value[0], '%d.%m.%YT%H:%M:%S').timestamp()
         except ValueError:
-	        dateTime = 0
+            print("Value error. Datetime parsing. value = {}".format(value[0]))
+            dateTime = 0
+            continue
 
-        val_points.append((dateTime, T))
+        val_points.append((dateTime, line))
     fileRad.close()
 
 val_points = dict((x,y) for x, y in val_points)
@@ -48,13 +50,19 @@ def getKey(item):
 val_points = sorted(vals, key=getKey)
 
 fileRes = filedialog.asksaveasfile('w')
-fileRes.write('PAGE	PAGESTARTDATETIME	VALUE	GPSTIME	LAT	LON	ALT	SAT	PAGEENDDATETIME' + '\n')
+fileRes.write('LON\tLAT\tALT\t' + title)
+val_points_counts = len(val_points)
+points_counter = 1
 for point in val_points:
-	LatLonAlt = LatLonAltInterpolFunc.getLatLonAlt(point[0])
-	resPoint = point + LatLonAlt
-	fileRes.write('0' + '\t' + str(datetime.fromtimestamp(resPoint[0]).strftime('%y.%m.%dT%H:%M:%S')) + '\t'
-	              + str(resPoint[1]) + '\t'
-	              + str(datetime.fromtimestamp(resPoint[0]).strftime('%y.%m.%dT%H:%M:%S')) + '\t'
-	              + str(resPoint[3]) + '\t' + str(resPoint[2])  + '\t' + str(resPoint[4]) + '\t'
-	              + '0' + '\t' '0' + '\n')
+    print("Handle point №{} of {}. ".format(points_counter, val_points_counts))
+    points_counter += 1
+    LonLatAlt = LatLonAltInterpolFunc.getLonLatAlt(point[0])
+    resPoint = point + LonLatAlt
+    # fileRes.write('0' + '\t' + str(datetime.fromtimestamp(resPoint[0]).strftime('%y.%m.%dT%H:%M:%S')) + '\t'
+    #               + str(resPoint[1]) + '\t'
+    #               + str(datetime.fromtimestamp(resPoint[0]).strftime('%y.%m.%dT%H:%M:%S')) + '\t'
+    #               + str(resPoint[3]) + '\t' + str(resPoint[2])  + '\t' + str(resPoint[4]) + '\t'
+    #               + '0' + '\t' '0' + '\n')
+    fileRes.write(str(LonLatAlt[0]) + '\t' + str(LonLatAlt[1]) + '\t' + str(LonLatAlt[2])
+                  + '\t' + str(point[1]))
 fileRes.close()

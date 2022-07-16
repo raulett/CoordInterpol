@@ -29,7 +29,7 @@ gammaDataResult = []
 fileRes = filedialog.asksaveasfile('w')
 fileRes.write('DATETIME\tLAT\tLON\tALT\tkDOSE\tuDOSE\tintegralCH\n')
 for point in val_points:
-    LatLonAlt = LatLonAltInterpolFunc.getLatLonAlt(point[0])
+    LatLonAlt = LatLonAltInterpolFunc.getLonLatAlt(point[0])
     resPoint = point + LatLonAlt
     fileRes.write(str(datetime.datetime.fromtimestamp(resPoint[0]).strftime('%d-%m-%YT%H:%M:%S,%f')) + '\t' + str(resPoint[5])  + '\t' + str(resPoint[4])  + '\t'
                   + str(resPoint[6]) + '\t' + str(resPoint[1]) + '\t' + str(resPoint[2]) + '\t' + str(resPoint[3]) + '\n')

@@ -13,7 +13,9 @@ class CoordFunction:
     #Функция создает объект CoordFunction, Получает на вход массив кортежей вида (lon, lat, alt, nixTimstamp),
     # отсортированный по времени.
     def __init__(self, tableLonLatAlt):
+        print("coordinate interpolation started")
         for i in range(len(tableLonLatAlt)):
+            print("Record {} from {} interpolated. ".format(i, len(tableLonLatAlt)))
             if tableLonLatAlt[i][3] < self.firstRecord: self.firstRecord = tableLonLatAlt[i][3]
             if tableLonLatAlt[i][3] > self.lastRecord: self.lastRecord = tableLonLatAlt[i][3]
             if i == 0:
@@ -64,7 +66,7 @@ class CoordFunction:
         print("first rec: " + str(self.firstRecord) + ", last rec: " + str(self.lastRecord))
     # Функция получает время и возвращает положение LAT, LON, ALT. Пока реализовано перебором, надо будет переписать
     # половинным делением.
-    def getLatLonAlt(self, timestamp):
+    def getLonLatAlt(self, timestamp):
         if timestamp < self.firstRecord or timestamp > self.lastRecord:
             print("data`s time record {0} is out of coordinate range.".format(timestamp))
             return (0, 0, 0)

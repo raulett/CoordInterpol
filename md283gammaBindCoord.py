@@ -76,7 +76,7 @@ fileRes.write('DATETIME' + '\t' + 'LON' + '\t' + 'LAT' + '\t' + 'ALT' + '\t' + '
               'ch1Num' + '\t' + 'ch2Num' + '\t' + 'ch1En' + '\t' + 'ch2En' + '\t' +
               'expoTime' + '\t' + 'U' + '\t' + 'Th' + '\t' + 'K' + '\t' + 'spectre' + '\n')
 for point in val_points:
-	LatLonAlt = LatLonAltInterpolFunc.getLatLonAlt(point[0])
+	LatLonAlt = LatLonAltInterpolFunc.getLonLatAlt(point[0])
 	resPoint = point + LatLonAlt
 	fileRes.write(str(datetime.fromtimestamp(resPoint[0]).strftime('%d-%m-%YT%H:%M:%S')) + '\t'
 	              + str(resPoint[2]) + '\t' + str(resPoint[3]) + '\t' + str(resPoint[4]) + '\t'
